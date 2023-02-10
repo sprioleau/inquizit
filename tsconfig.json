@@ -1,0 +1,14 @@
+{
+	"compilerOptions": {
+		"target": "ESNext",
+		"module": "NodeNext",
+		"jsx": "react-jsx",
+		"outDir": "./dist",
+		"strict": true,
+		"noEmit": true,
+		"lib": ["es2015"],
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"forceConsistentCasingInFileNames": true
+	}
+}
