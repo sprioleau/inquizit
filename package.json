@@ -4,8 +4,9 @@
   "description": "My Remotion video",
   "scripts": {
     "start": "remotion preview",
-    "build": "remotion render HelloWorld out/video.mp4",
+    "build": "npx remotion render --coded=mp3",
     "upgrade": "remotion upgrade",
+    "lint": "npx eslint . --fix",
     "test": "eslint src --ext ts,tsx,js,jsx && tsc"
   },
   "repository": {},
@@ -29,6 +30,7 @@
   },
   "dependencies": {
     "@remotion/cli": "3.3.43",
+    "@remotion/google-fonts": "^3.3.43",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "remotion": "3.3.43"

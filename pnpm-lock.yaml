@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@remotion/cli': 3.3.43
   '@remotion/eslint-config': ^3.3.43
+  '@remotion/google-fonts': ^3.3.43
   '@types/react': ^18.0.27
   '@types/web': ^0.0.86
   eslint: ^8.34.0
@@ -23,6 +24,7 @@ specifiers:
 
 dependencies:
   '@remotion/cli': 3.3.43_biqbaboplfbrettd7655fr4n2y
+  '@remotion/google-fonts': 3.3.43_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   remotion: 3.3.43_biqbaboplfbrettd7655fr4n2y
@@ -483,6 +485,15 @@ packages:
       - supports-color
       - typescript
     dev: true
+
+  /@remotion/google-fonts/3.3.43_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-xHd8QeyOrMPq8xEZJKVDKj/KueIRlaNWi5JIldkfifvaSLz5OAUe0S0JiyAdUKrDpXS+YRvQatktrdlhkrkM9A==}
+    dependencies:
+      remotion: 3.3.43_biqbaboplfbrettd7655fr4n2y
+    transitivePeerDependencies:
+      - react
+      - react-dom
+    dev: false
 
   /@remotion/media-utils/3.3.43_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-uUzlBS4MYJ9qVswpDfASTq5OOWwdOl+dXJB71r4HqeMs5dliQ48bvt3A9XzD+nbFJ5/vy//jx00LAc90tZwQcA==}
