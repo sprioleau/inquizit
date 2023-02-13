@@ -1,7 +1,7 @@
 import { AbsoluteFill, Audio, Sequence, staticFile, useVideoConfig } from "remotion";
 
 import Question from "../components/Question";
-import ScrollingBackground from "../components/ScrollingBackground";
+import ScrollingBackgroundWave from "../components/ScrollingBackgroundWave";
 
 const questions = [
   {
@@ -43,7 +43,11 @@ export default function QuestionIntro() {
           from={framesPerQuestion * index}
           durationInFrames={framesPerQuestion}
         >
-          <ScrollingBackground imageSource={`images/waves-${(index + 1) % 4}.svg`} />
+          <ScrollingBackgroundWave
+            color={["#E21D6F", "#288ED7", "#188181", "#E4AD1F"][index % 4]}
+            speedIncrement={0.01}
+          />
+          {/* <ScrollingBackground imageSource={`images/waves-${(index + 1) % 4}.svg`} /> */}
           <Question
             question={question}
             questionNumber={index + 1}

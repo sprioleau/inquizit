@@ -30,8 +30,8 @@ export default function ProgressMeter({ progress, shouldCountDown }: Props) {
         {shouldCountDown ? (
           <div
             style={{
-              width: 30,
-              height: height * 0.75,
+              width: 20,
+              height: height * 0.35,
               borderRadius: 30,
               background: `linear-gradient(to bottom, white 0%, white ${progress}%, rebeccapurple ${progress}%, rebeccapurple 100%)`,
             }}
@@ -40,7 +40,7 @@ export default function ProgressMeter({ progress, shouldCountDown }: Props) {
           <div
             style={{
               width: 1000,
-              height: 30,
+              height: 20,
               borderRadius: 30,
               background: `linear-gradient(to right, rebeccapurple 0%, rebeccapurple ${progress}%, white ${progress}%, white 100%)`,
             }}

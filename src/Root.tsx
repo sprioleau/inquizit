@@ -1,11 +1,20 @@
 import { Composition } from "remotion";
 
 import ScrollingBackground from "./components/ScrollingBackground";
+import ScrollingBackgroundWave from "./components/ScrollingBackgroundWave";
 import Main from "./scenes/Main";
 
 export const RemotionRoot: React.FC = () => {
   return (
     <>
+      <Composition
+        id="ScrollingBackgroundWave"
+        component={ScrollingBackgroundWave}
+        durationInFrames={60}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
       <Composition
         id="ScrollingBackground"
         component={ScrollingBackground}
