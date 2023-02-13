@@ -1,5 +1,16 @@
-import { AbsoluteFill, interpolate, Sequence, useCurrentFrame, useVideoConfig } from "remotion";
+import { useCallback, useEffect, useState } from "react";
+import {
+  AbsoluteFill,
+  Audio,
+  continueRender,
+  delayRender,
+  interpolate,
+  Sequence,
+  useCurrentFrame,
+  useVideoConfig,
+} from "remotion";
 
+import { getTextToSpeechData } from "../api/utils";
 import ProgressMeter from "./ProgressMeter";
 import StaggeredText from "./StaggeredText";
 
@@ -10,6 +21,21 @@ type Props = {
 };
 
 export default function Question({ question, questionNumber, answer }: Props) {
+  const [data, setData] = useState<null | { audioStream: string }>(null);
+  const [handle] = useState(() => delayRender());
+
+  const fetchData = useCallback(async () => {
+    const { data: dataFromApi, error } = await getTextToSpeechData(answer);
+    if (dataFromApi) setData(dataFromApi);
+    if (error) console.error(error);
+
+    continueRender(handle);
+  }, [handle]);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
   const { durationInFrames } = useVideoConfig();
   const frame = useCurrentFrame();
   const staggerByFrames = 2;
@@ -24,6 +50,8 @@ export default function Question({ question, questionNumber, answer }: Props) {
       extrapolateRight: "clamp",
     },
   );
+
+  if (!data) return null;
 
   return (
     <AbsoluteFill
@@ -76,6 +104,7 @@ export default function Question({ question, questionNumber, answer }: Props) {
         }}
         from={durationInFrames - framesToHoldAnswer}
       >
+        {data && <Audio src={"data:audio/mp3;base64," + data.audioStream} />}
         <p
           style={{
             position: "absolute",

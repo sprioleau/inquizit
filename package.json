@@ -13,6 +13,7 @@
   "license": "UNLICENSED",
   "devDependencies": {
     "@remotion/eslint-config": "^3.3.43",
+    "@types/node": "^18.13.0",
     "@types/react": "^18.0.27",
     "@types/web": "^0.0.86",
     "eslint": "^8.34.0",

@@ -8,6 +8,14 @@ export const RemotionRoot: React.FC = () => {
   return (
     <>
       <Composition
+        id="Main"
+        component={Main}
+        durationInFrames={705}
+        fps={30}
+        width={1920}
+        height={1080}
+      />
+      <Composition
         id="ScrollingBackgroundWave"
         component={ScrollingBackgroundWave}
         durationInFrames={60}
@@ -25,14 +33,6 @@ export const RemotionRoot: React.FC = () => {
         defaultProps={{
           imageSource: "images/waves-2.svg",
         }}
-      />
-      <Composition
-        id="Main"
-        component={Main}
-        durationInFrames={705}
-        fps={30}
-        width={1920}
-        height={1080}
       />
     </>
   );
