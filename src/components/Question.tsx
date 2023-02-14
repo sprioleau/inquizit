@@ -11,6 +11,7 @@ import {
 } from "remotion";
 
 import { getTextToSpeechData } from "../utils";
+import Emoji from "./Emoji";
 import ProgressMeter from "./ProgressMeter";
 import StaggeredText from "./StaggeredText";
 
@@ -68,7 +69,7 @@ export default function Question({ question, questionNumber, answer }: Props) {
           lineHeight: 1,
         }}
       >
-        {question}
+        <Emoji input={question} />
       </h1>
       <span
         style={{

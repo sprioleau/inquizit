@@ -20,6 +20,7 @@ specifiers:
   prettier-eslint: ^15.0.1
   react: ^18.2.0
   react-dom: ^18.2.0
+  react-easy-emoji: ^1.8.1
   remotion: 3.3.43
   typescript: ^4.9.5
 
@@ -28,6 +29,7 @@ dependencies:
   '@remotion/google-fonts': 3.3.43_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  react-easy-emoji: 1.8.1_3stiutgnnbnfnf3uowm5cip22i
   remotion: 3.3.43_biqbaboplfbrettd7655fr4n2y
 
 devDependencies:
@@ -578,7 +580,6 @@ packages:
 
   /@types/prop-types/15.7.5:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
-    dev: true
 
   /@types/react/18.0.27:
     resolution: {integrity: sha512-3vtRKHgVxu3Jp9t718R9BuzoD4NcQ8YJ5XRzsSKxNDiDonD2MXIT1TmSkenxuCycZJoQT5d2vE8LwWJxBC1gmA==}
@@ -586,11 +587,9 @@ packages:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.2
       csstype: 3.1.1
-    dev: true
 
   /@types/scheduler/0.16.2:
     resolution: {integrity: sha512-hppQEBDmlwhFAXKJX2KnWLYu5yMfi91yazPb2l+lbJiwW+wdo1gNeRA+3RgNSO39WYX2euey41KEwnqesU2Jew==}
-    dev: true
 
   /@types/web/0.0.86:
     resolution: {integrity: sha512-d8mYKwcKvkMSlxlDovHyRD7GhNpe10ti4GaX4dR0lsQqk+2l9Y72PU2yPpYlRajQrpfuOWlgGqs8jpbSU9udpg==}
@@ -1127,7 +1126,6 @@ packages:
 
   /csstype/3.1.1:
     resolution: {integrity: sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==}
-    dev: true
 
   /debug/3.2.7:
     resolution: {integrity: sha512-CFjzYYAi4ThfiQvizrFQevTTXHtnCqWfe7x1AhgEscTz6ZbLbfoLRLPugTQyBth6f8ZERVUSyWHFD/7Wu4t1XQ==}
@@ -2690,6 +2688,20 @@ packages:
       scheduler: 0.23.0
     dev: false
 
+  /react-easy-emoji/1.8.1_3stiutgnnbnfnf3uowm5cip22i:
+    resolution: {integrity: sha512-wAf2x+cjwtOlLfXnjc0J3k5B2PDZdoxd1BjtfKr5tq2AL7t2ygvByJQWgFOyN28xg3qe8EKBM6pKxGP+qrGWuQ==}
+    peerDependencies:
+      '@types/react': '>=0.14.0'
+      react: '>=0.14.27'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+    dependencies:
+      '@types/react': 18.0.27
+      react: 18.2.0
+      string-replace-to-array: 2.1.0
+    dev: false
+
   /react-is/16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
     dev: true
@@ -2886,6 +2898,10 @@ packages:
     engines: {node: '>= 8'}
     dependencies:
       whatwg-url: 7.1.0
+    dev: false
+
+  /string-replace-to-array/2.1.0:
+    resolution: {integrity: sha512-xG2w4fE5FsTXS4AFxoF3uctByqTIFBX8lFRNcPcIznTVCMXbYvbatkPVLpAo13tfuWtzbWEV6u5bjoE9bOv87w==}
     dev: false
 
   /string.prototype.matchall/4.0.8:
