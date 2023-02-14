@@ -28,7 +28,7 @@ jobs:
         env:
           WORKFLOW_INPUT: ${{ toJson(github.event.inputs) }}
       - run: npm run build -- --props="./input-props.json"
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v2
         with:
           name: video.mp4
           path: out/video.mp4
