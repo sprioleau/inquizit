@@ -3,19 +3,14 @@ import { AbsoluteFill, Audio, Sequence, staticFile, useVideoConfig } from "remot
 import Question from "../components/Question";
 import ScrollingBackgroundWave from "../components/ScrollingBackgroundWave";
 
+// prettier-ignore
 const questions = [
-  {
-    question: "🧈☝️",
-    answer: "Butterfinger",
-  },
-  {
-    question: "🍫🍫🍫",
-    answer: "Three Musketeers",
-  },
-  {
-    question: "🐱🐱",
-    answer: "KitKat",
-  },
+  { question: "🧈☝️"   , answer: "Butterfinger"     },
+  { question: "🍫🍫🍫" , answer: "Three Musketeers" },
+  { question: "🐱🐱"   , answer: "KitKat"           },
+  { question: "🧅💍"   , answer: "Onion Rings"      },
+  { question: "🐍👂"   , answer: "Snickers"         },
+  { question: "🦓🍰"   , answer: "Zebra Cake"       },
 ];
 
 export default function QuestionIntro() {
@@ -29,7 +24,6 @@ export default function QuestionIntro() {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        // background: "rebeccapurple",
       }}
     >
       <Audio
@@ -44,10 +38,9 @@ export default function QuestionIntro() {
           durationInFrames={framesPerQuestion}
         >
           <ScrollingBackgroundWave
-            color={["#E21D6F", "#288ED7", "#188181", "#E4AD1F"][index % 4]}
+            color={["#E21D6F", "#288ED7", "#188181", "#E4AD1F", "#a819ea"][index % 5]}
             speedIncrement={0.01}
           />
-          {/* <ScrollingBackground imageSource={`images/waves-${(index + 1) % 4}.svg`} /> */}
           <Question
             question={question}
             questionNumber={index + 1}

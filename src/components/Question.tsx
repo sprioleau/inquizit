@@ -10,7 +10,7 @@ import {
   useVideoConfig,
 } from "remotion";
 
-import { getTextToSpeechData } from "../api/utils";
+import { getTextToSpeechData } from "../utils";
 import ProgressMeter from "./ProgressMeter";
 import StaggeredText from "./StaggeredText";
 

@@ -1,3 +1,5 @@
+// Reference for voice parameters: https://rapidapi.com/rahilkhan224/api/text-to-speech-neural-google/tutorials/text-to-speech-tutorial
+
 export default async function getTextToSpeechData(text: string) {
   const url = "https://text-to-speech-neural-google.p.rapidapi.com/generateAudioFiles";
 
@@ -12,9 +14,9 @@ export default async function getTextToSpeechData(text: string) {
       audioFormat: "mp3",
       paragraphChunks: [text],
       voiceParams: {
-        name: "Wavenet-B",
-        engine: "google",
-        languageCode: "en-US",
+        name: "Amy",
+        engine: "neural",
+        languageCode: "en-GB",
       },
     }),
   };
@@ -22,15 +24,17 @@ export default async function getTextToSpeechData(text: string) {
   let data = null;
   let error = null;
 
-  const existingItem = JSON.parse(localStorage.getItem("textToSpeechData") ?? "{}");
+  const localStorageKey = `tts:${text}`;
+
+  const existingItem = JSON.parse(localStorage.getItem(localStorageKey) ?? "null");
 
   try {
-    if (existingItem[text]) {
-      data = existingItem[text];
+    if (existingItem) {
+      data = existingItem;
     } else {
       const response = await fetch(url, options);
       data = await response.json();
-      localStorage.setItem("textToSpeechData", JSON.stringify({ ...existingItem, [text]: data }));
+      localStorage.setItem(localStorageKey, JSON.stringify(data));
     }
   } catch (caughtError) {
     error = caughtError;
