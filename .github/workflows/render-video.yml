@@ -10,10 +10,6 @@ env:
   RAPID_API_KEY: ${{ secrets.RAPID_API_KEY }}
   RAPID_API_HOST: ${{ secrets.RAPID_API_HOST }}
 
-runs:
-  using: 'node16'
-  main: 'main.js'
-
 jobs:
   render:
     name: Render video
