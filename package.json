@@ -4,7 +4,7 @@
   "description": "Quizzes for the curious mind",
   "scripts": {
     "start": "remotion preview",
-    "build": "npx remotion render GuessTheSnack --coded=mp3",
+    "build": "npx remotion render Main --coded=mp3",
     "upgrade": "remotion upgrade",
     "lint": "npx eslint . --fix",
     "test": "eslint src --ext ts,tsx,js,jsx && tsc"

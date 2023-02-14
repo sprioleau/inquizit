@@ -26,5 +26,5 @@ jobs:
       - run: npm run build -- --props="./input-props.json"
       - uses: actions/upload-artifact@v2
         with:
-          name: video.mp4
-          path: out/video.mp4
+          name: Main.mp4
+          path: out/Main.mp4

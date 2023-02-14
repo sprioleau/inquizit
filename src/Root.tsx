@@ -10,7 +10,7 @@ export const RemotionRoot: React.FC = () => {
   return (
     <>
       <Composition
-        id="GuessTheSnack"
+        id="Main"
         component={Main}
         durationInFrames={Number(inputProps.duration) ?? 1545}
         fps={30}
