@@ -13,28 +13,29 @@ export default function Emoji({ input }: Props) {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  const driver = spring({
-    fps,
-    frame,
-    config: {
-      mass: 0.5,
-      stiffness: 100,
-    },
-  });
+  const wobbleSpeed = 0.15;
 
   const parsed = emoji(input, (code, string, offset) => {
-    const driver = spring({
+    const defaultDriver = spring({
       fps,
-      frame: frame - offset * 3,
+      frame: 0.5 * frame - offset * 2,
       config: {
-        mass: 0.5,
-        stiffness: 100,
+        mass: 0.1,
       },
     });
 
-    const scale = interpolate(driver, [0, 1], [0.2, 1], {
+    const scale = interpolate(defaultDriver, [0, 1], [0.2, 1], {
       extrapolateRight: "clamp",
     });
+
+    const rotate = interpolate(
+      defaultDriver + (Math.sin((frame - offset) * wobbleSpeed) % 10),
+      [0, 2],
+      [-5, 5],
+      {
+        extrapolateRight: "clamp",
+      },
+    );
 
     return (
       <Img
@@ -43,10 +44,12 @@ export default function Emoji({ input }: Props) {
         data-emoji={string}
         alt={string}
         style={{
+          display: "inline-block",
           width: "1em",
           height: "1em",
-          transform: `scale(${scale}) rotate(${driver * 360}deg)`,
-          opacity: driver,
+          transform: `scale(${scale}) rotate(${rotate}deg)`,
+          transformOrigin: "center center",
+          opacity: defaultDriver,
         }}
       />
     );
