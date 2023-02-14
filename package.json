@@ -1,16 +1,16 @@
 {
-  "name": "my-video",
+  "name": "inquizit",
   "version": "1.0.0",
-  "description": "My Remotion video",
+  "description": "Quizzes for the curious mind",
   "scripts": {
     "start": "remotion preview",
-    "build": "npx remotion render --coded=mp3",
+    "build": "npx remotion render GuessTheSnack --coded=mp3",
     "upgrade": "remotion upgrade",
     "lint": "npx eslint . --fix",
     "test": "eslint src --ext ts,tsx,js,jsx && tsc"
   },
   "repository": {},
-  "license": "UNLICENSED",
+  "license": "MIT",
   "devDependencies": {
     "@remotion/eslint-config": "^3.3.43",
     "@types/node": "^18.13.0",

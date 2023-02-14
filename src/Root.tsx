@@ -1,16 +1,18 @@
-import { Composition } from "remotion";
+import { Composition, getInputProps } from "remotion";
 
 import ScrollingBackground from "./components/ScrollingBackground";
 import ScrollingBackgroundWave from "./components/ScrollingBackgroundWave";
 import Main from "./scenes/Main";
 
+const inputProps = getInputProps();
+
 export const RemotionRoot: React.FC = () => {
   return (
     <>
       <Composition
-        id="Main"
+        id="GuessTheSnack"
         component={Main}
-        durationInFrames={1545}
+        durationInFrames={Number(inputProps.duration) ?? 1545}
         fps={30}
         width={1920}
         height={1080}

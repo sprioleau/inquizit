@@ -14,7 +14,7 @@ export default function Logo() {
           color: "gold",
         }}
       >
-        quis
+        quiz
       </span>
       it
     </h1>
