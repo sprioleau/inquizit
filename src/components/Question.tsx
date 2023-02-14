@@ -104,7 +104,7 @@ export default function Question({ question, questionNumber, answer }: Props) {
         }}
         from={durationInFrames - framesToHoldAnswer}
       >
-        {data && <Audio src={"data:audio/mp3;base64," + data.audioStream} />}
+        {data && data?.audioStream && <Audio src={"data:audio/mp3;base64," + data.audioStream} />}
         <p
           style={{
             position: "absolute",
