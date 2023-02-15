@@ -1,22 +1,16 @@
+import StaggeredText from "./StaggeredText";
+
 export default function Logo() {
   return (
     <h1
       style={{
         fontSize: 150,
-        color: "white",
+        color: "gold",
         margin: 0,
         lineHeight: 1.1,
       }}
     >
-      in
-      <span
-        style={{
-          color: "gold",
-        }}
-      >
-        quiz
-      </span>
-      it
+      <StaggeredText text="inquizit" />
     </h1>
   );
 }

@@ -1,60 +1,8 @@
-import {
-  AbsoluteFill,
-  Audio,
-  Easing,
-  interpolate,
-  spring,
-  staticFile,
-  useCurrentFrame,
-  useVideoConfig,
-} from "remotion";
+import { AbsoluteFill, Audio, staticFile } from "remotion";
+
+import StaggeredText from "../components/StaggeredText";
 
 export default function QuestionIntro() {
-  const { fps, durationInFrames } = useVideoConfig();
-  const frame = useCurrentFrame();
-
-  const driver = spring({
-    config: {
-      damping: 100,
-      mass: 0.5,
-    },
-    fps,
-    frame,
-  });
-
-  const translateY = interpolate(
-    frame,
-    [0, 20, durationInFrames - 30, durationInFrames],
-    [150, 0, 0, 30],
-    {
-      easing: Easing.inOut(Easing.ease),
-      extrapolateLeft: "clamp",
-      extrapolateRight: "clamp",
-    },
-  );
-
-  const opacity = interpolate(
-    frame,
-    [0, 20, durationInFrames - 30, durationInFrames - 10],
-    [0, 1, 1, 0],
-    {
-      easing: Easing.inOut(Easing.ease),
-      extrapolateLeft: "clamp",
-      extrapolateRight: "clamp",
-    },
-  );
-
-  const scale = interpolate(
-    driver,
-    [0, 20, durationInFrames - 30, durationInFrames - 10],
-    [0, 100, 100, 0],
-    {
-      easing: Easing.inOut(Easing.ease),
-      extrapolateLeft: "clamp",
-      extrapolateRight: "clamp",
-    },
-  );
-
   return (
     <AbsoluteFill
       style={{
@@ -68,26 +16,23 @@ export default function QuestionIntro() {
         src={staticFile("question.mp3")}
         startFrom={5}
       />
-      <div
+      <h1
         style={{
-          transform: `scale(${scale}) translateY(${translateY}px)`,
-          opacity,
+          textTransform: "uppercase",
+          color: "white",
+          fontSize: 150,
+          fontWeight: 700,
+          lineHeight: 1.1,
+          textAlign: "center",
+          padding: 100,
+          maxWidth: "90%",
         }}
       >
-        <h1
-          style={{
-            textTransform: "uppercase",
-            color: "white",
-            fontSize: 150,
-            fontWeight: 700,
-            lineHeight: 1.1,
-            textAlign: "center",
-            padding: 20,
-          }}
-        >
-          Guess the <span style={{ color: "gold" }}>snack</span> <br /> by emoji
-        </h1>
-      </div>
+        <StaggeredText
+          text="Guess the snack by emoji"
+          staggerByFrames={1}
+        />
+      </h1>
     </AbsoluteFill>
   );
 }

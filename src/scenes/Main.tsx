@@ -16,18 +16,18 @@ export default function Main() {
     <AbsoluteFill style={{ fontFamily }}>
       <Sequence
         from={0}
-        durationInFrames={45}
+        durationInFrames={90}
       >
         <Title />
       </Sequence>
       <Sequence
-        from={45}
-        durationInFrames={30 * 2}
+        from={90}
+        durationInFrames={30 * 3}
       >
         <QuestionIntro />
       </Sequence>
       <Sequence
-        from={45 + 30 * 2}
+        from={90 + 30 * 3}
         durationInFrames={fps * secondsPerQuestion * numberOfQuestions}
       >
         <Questions />
