@@ -1,3 +1,4 @@
+import React from "react";
 import { interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
 
 type Props = {
@@ -23,7 +24,7 @@ export default function StaggeredText({
         const characters = word.split("");
 
         return (
-          <>
+          <React.Fragment key={wordIndex}>
             <span
               key={`${word}-${wordIndex}`}
               style={{ display: "inline-block" }}
@@ -66,7 +67,7 @@ export default function StaggeredText({
               })}
             </span>
             &nbsp;
-          </>
+          </React.Fragment>
         );
       })}
     </>

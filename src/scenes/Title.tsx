@@ -1,19 +1,10 @@
-import { AbsoluteFill, Audio, spring, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
+import { AbsoluteFill, Audio, interpolate, staticFile, useCurrentFrame } from "remotion";
 
 import Logo from "../components/Logo";
+import TitleBackground from "../components/TitleBackground";
 
 export default function Title() {
   const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
-
-  const opacity = spring({
-    config: {
-      stiffness: 200,
-      mass: 0.75,
-    },
-    fps,
-    frame: 0.5 * (frame - 15),
-  });
 
   return (
     <AbsoluteFill
@@ -25,13 +16,15 @@ export default function Title() {
       }}
     >
       <Audio src={staticFile("chime.mp3")} />
+      <TitleBackground />
       <Logo />
       <p
         style={{
+          zIndex: 1,
           fontSize: 60,
           color: "white",
           margin: 0,
-          opacity,
+          opacity: interpolate(frame, [0, 15, 30], [0, 0, 1]),
         }}
       >
         inquire into
