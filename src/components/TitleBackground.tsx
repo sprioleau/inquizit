@@ -2,12 +2,13 @@ import { AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig } fr
 
 type Props = {
   color?: string;
+  waveDirection?: "in" | "out";
 };
 
 const CIRCLE_QUANTITY = 6;
 const STAGGER_OFFSET = 3;
 
-export default function TitleBackground({ color = "#3B075E" }: Props) {
+export default function TitleBackground({ color = "#3B075E", waveDirection = "in" }: Props) {
   const frame = useCurrentFrame();
   const { fps, height, width } = useVideoConfig();
 
@@ -31,7 +32,10 @@ export default function TitleBackground({ color = "#3B075E" }: Props) {
           fps,
           frame: frame - index * STAGGER_OFFSET + 5,
         });
-        const scale = interpolate(driver, [0, 1], [1.5, 0.9]);
+
+        const outputRange = waveDirection === "in" ? [1.5, 0.9] : [0.5, 1.2];
+
+        const scale = interpolate(driver, [0, 1], outputRange);
 
         return (
           <div
