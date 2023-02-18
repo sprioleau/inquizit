@@ -32,8 +32,6 @@ export default function Question({ question, questionNumber, answer, audioStream
     },
   );
 
-  if (!audioStream) return null;
-
   return (
     <AbsoluteFill
       style={{
@@ -85,8 +83,9 @@ export default function Question({ question, questionNumber, answer, audioStream
         }}
         from={durationInFrames - framesToHoldAnswer}
       >
-        <Audio src={audioStream} />
-        {/* {data && data?.audioStream && <Audio src={audioStream} />} */}
+        {audioStream.slice("data:audio/mp3;base64,".length).length > 0 && (
+          <Audio src={audioStream} />
+        )}
         <p
           style={{
             position: "absolute",
