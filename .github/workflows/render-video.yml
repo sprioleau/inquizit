@@ -17,19 +17,25 @@ jobs:
     name: Render video
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@main
-      - name: Setup Node
-        uses: actions/setup-node@main
-      - run: sudo apt update
+      - name: ✅ Checkout
+        uses: actions/checkout@v3
+      - name: 🌉 Setup Node.js Environment
+        uses: actions/setup-node@v3
+        with: 
+          node-version: 16
+      - name: ⬆️ Update Package Manager
+        run: sudo apt update
+      - name: 🔄 Setup FFmpeg
       - run: sudo apt install ffmpeg
-      - run: npm i
-      - run: echo $WORKFLOW_INPUT > input-props.json
+      - name: 📦 Install NPM Dependencies
+        run: npm i
+      - name: 🍱 Setup Inputs
+        run: echo $WORKFLOW_INPUT > input-props.json
         env:
           WORKFLOW_INPUT: ${{ toJson(github.event.inputs) }}
-      - name: Build with input props
+      - name: 🔨 Run Build Script
         run: npm run build -- --props="./input-props.json"
-      - name: Upload Artifact
+      - name: ⬆️ Upload Artifact
         uses: actions/upload-artifact@v3
         with:
           name: Main.mp4
