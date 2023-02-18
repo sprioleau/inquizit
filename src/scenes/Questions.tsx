@@ -2,18 +2,13 @@ import { AbsoluteFill, Audio, Sequence, staticFile, useVideoConfig } from "remot
 
 import Question from "../components/Question";
 import ScrollingBackgroundWave from "../components/ScrollingBackgroundWave";
+import { TQuestion } from "./Main";
 
-// prettier-ignore
-const questions = [
-  { question: "🧈☝️"   , answer: "Butterfinger"     },
-  { question: "🍫🍫🍫" , answer: "Three Musketeers" },
-  { question: "🐱🐱"   , answer: "KitKat"           },
-  { question: "🧅💍"   , answer: "Onion Rings"      },
-  { question: "🐍👂"   , answer: "Snickers"         },
-  { question: "🦓🍰"   , answer: "Zebra Cake"       },
-];
+type Props = {
+  questions: TQuestion[];
+};
 
-export default function QuestionIntro() {
+export default function Questions({ questions }: Props) {
   const { durationInFrames } = useVideoConfig();
 
   const framesPerQuestion = Math.floor(durationInFrames / questions.length);
@@ -31,7 +26,7 @@ export default function QuestionIntro() {
         startFrom={345}
         volume={0.5}
       />
-      {questions.map(({ question, answer }, index) => (
+      {questions.map(({ question, answer, audioStream }, index) => (
         <Sequence
           key={index}
           from={framesPerQuestion * index}
@@ -45,6 +40,7 @@ export default function QuestionIntro() {
             question={question}
             questionNumber={index + 1}
             answer={answer}
+            audioStream={audioStream}
           />
         </Sequence>
       ))}
