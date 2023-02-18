@@ -45,6 +45,7 @@ export default function StaggeredText({
 
                 const scale = interpolate(driver, [0, 1], [0.5, 1]);
                 const translateY = interpolate(driver, [0, 1], [50, 0]);
+                const brightness = interpolate(driver, [0, 1], [-0.5, 0]);
 
                 return (
                   <span
@@ -56,6 +57,7 @@ export default function StaggeredText({
                         scaleY(${scale})
                         translateY(${translateY}px)
                       `,
+                      filter: `invert(${brightness})`,
                       transformOrigin: "bottom",
                       opacity: driver,
                       ...style,
