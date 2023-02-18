@@ -26,7 +26,7 @@ jobs:
       - name: ⬆️ Update Package Manager
         run: sudo apt update
       - name: 🔄 Setup FFmpeg
-      - run: sudo apt install ffmpeg
+        run: sudo apt install ffmpeg
       - name: 📦 Install NPM Dependencies
         run: npm i
       - name: 🍱 Setup Inputs
