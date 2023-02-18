@@ -1,6 +1,7 @@
 import { loadFont } from "@remotion/google-fonts/Poppins";
-import { AbsoluteFill, Sequence, useVideoConfig } from "remotion";
+import { AbsoluteFill, Series, useVideoConfig } from "remotion";
 
+import EndScene from "./EndScene";
 import QuestionIntro from "./QuestionIntro";
 import Questions from "./Questions";
 import Title from "./Title";
@@ -13,25 +14,23 @@ export default function Main() {
   const numberOfQuestions = 6;
 
   return (
-    <AbsoluteFill style={{ fontFamily }}>
-      <Sequence
-        from={0}
-        durationInFrames={90}
-      >
-        <Title />
-      </Sequence>
-      <Sequence
-        from={90}
-        durationInFrames={30 * 3}
-      >
-        <QuestionIntro />
-      </Sequence>
-      <Sequence
-        from={90 + 30 * 3}
-        durationInFrames={fps * secondsPerQuestion * numberOfQuestions}
-      >
-        <Questions />
-      </Sequence>
-    </AbsoluteFill>
+    <>
+      <AbsoluteFill style={{ fontFamily }}>
+        <Series>
+          <Series.Sequence durationInFrames={75}>
+            <Title />
+          </Series.Sequence>
+          <Series.Sequence durationInFrames={30 * 3}>
+            <QuestionIntro />
+          </Series.Sequence>
+          <Series.Sequence durationInFrames={fps * secondsPerQuestion * numberOfQuestions}>
+            <Questions />
+          </Series.Sequence>
+          <Series.Sequence durationInFrames={100}>
+            <EndScene />
+          </Series.Sequence>
+        </Series>
+      </AbsoluteFill>
+    </>
   );
 }
