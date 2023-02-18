@@ -1,4 +1,5 @@
-name: Render video
+name: Render Video
+
 on:
   workflow_dispatch:
     inputs:
@@ -6,6 +7,7 @@ on:
         description: "How many frames at 30fps should the video be?"
         required: true
         default: "1545"
+
 env: 
   RAPID_API_KEY: ${{ secrets.RAPID_API_KEY }}
   RAPID_API_HOST: ${{ secrets.RAPID_API_HOST }}
@@ -15,16 +17,20 @@ jobs:
     name: Render video
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@main
-      - uses: actions/setup-node@main
+      - name: Checkout
+        uses: actions/checkout@main
+      - name: Setup Node
+        uses: actions/setup-node@main
       - run: sudo apt update
       - run: sudo apt install ffmpeg
       - run: npm i
       - run: echo $WORKFLOW_INPUT > input-props.json
         env:
           WORKFLOW_INPUT: ${{ toJson(github.event.inputs) }}
-      - run: npm run build -- --props="./input-props.json"
-      - uses: actions/upload-artifact@v3
+      - name: Build with input props
+        run: npm run build -- --props="./input-props.json"
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v3
         with:
           name: Main.mp4
           path: out/Main.mp4
