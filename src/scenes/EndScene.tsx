@@ -17,7 +17,7 @@ export default function EndScene() {
     >
       <Audio src={staticFile("credits-chime.mp3")} />
       <TitleBackground
-        color="#ff0088"
+        color="#5e0744"
         waveDirection="out"
       />
       <h1
