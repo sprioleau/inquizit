@@ -24,17 +24,19 @@ export default async function getTextToSpeechData(text: string) {
   let data = null;
   let error = null;
 
-  const localStorageKey = `tts:${text}`;
-
-  const existingItem = JSON.parse(localStorage?.getItem(localStorageKey) ?? "null");
-
   try {
-    if (existingItem) {
+    const localStorageKey = `tts:${text}`;
+    const existingItem = JSON.parse(localStorage?.getItem(localStorageKey) ?? "null");
+
+    if (typeof localStorage === "object" && existingItem) {
       data = existingItem;
     } else {
       const response = await fetch(url, options);
       data = await response.json();
-      localStorage.setItem(localStorageKey, JSON.stringify(data));
+
+      if (typeof localStorage === "object") {
+        localStorage.setItem(localStorageKey, JSON.stringify(data));
+      }
     }
   } catch (caughtError) {
     error = caughtError;
