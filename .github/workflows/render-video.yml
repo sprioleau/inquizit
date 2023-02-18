@@ -6,7 +6,6 @@ on:
       duration:
         description: "How many frames at 30fps should the video be?"
         required: false
-        default: "1620"
 
 env: 
   RAPID_API_KEY: ${{ secrets.RAPID_API_KEY }}
