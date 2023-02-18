@@ -21,7 +21,7 @@ jobs:
       - name: 🌉 Setup Node.js Environment
         uses: actions/setup-node@v3
         with: 
-          node-version: 16
+          node-version: 18
       - name: ⬆️ Update Package Manager
         run: sudo apt update
       - name: 🔄 Setup FFmpeg
