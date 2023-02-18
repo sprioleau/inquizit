@@ -33,9 +33,13 @@ export default async function getTextToSpeechData(textStrings: string[]) {
     const promises = filteredTextStrings.map((text) => fetch(url, getOptions(text)));
     const responses = await Promise.all(promises);
     const ttsData = await Promise.all(responses.map((response) => response.json()));
+    console.log("🥞 ~ file: getTextToSpeechData.ts:36 ~ getTextToSpeechData ~ ttsData", ttsData);
     const audioStreams = ttsData.map((item) => "data:audio/mp3;base64," + (item.audioStream ?? ""));
 
     audioStreams.forEach((audioStream, index) => {
+      console.log(
+        `🚀 ~ Truncated audioStream for ${textStrings[index]}: ${audioStream.slice(0, 50)}`,
+      );
       const localStorageKey = `tts:${textStrings[index]}`;
       localStorage.setItem(JSON.stringify(localStorageKey), audioStream);
     });
