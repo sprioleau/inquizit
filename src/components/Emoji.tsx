@@ -7,7 +7,7 @@ type Props = {
   input: string;
 };
 
-const BASE_URL = "https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/72x72";
+const BASE_URL = "https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg";
 
 export default function Emoji({ input }: Props) {
   const frame = useCurrentFrame();
@@ -40,7 +40,7 @@ export default function Emoji({ input }: Props) {
     return (
       <Img
         key={offset}
-        src={`${BASE_URL}/${code}.png`}
+        src={`${BASE_URL}/${code}.svg`}
         data-emoji={string}
         alt={string}
         style={{
