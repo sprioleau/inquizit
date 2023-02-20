@@ -3,6 +3,13 @@ import { Composition, getInputProps } from "remotion";
 import Main from "./scenes/Main";
 
 const inputProps = getInputProps();
+console.log("🚀 ~ inputProps:", inputProps);
+console.log("🚀 ~ typeof inputProps:", typeof inputProps);
+console.log("🚀 ~ inputProps?.questionData:", inputProps?.questionData);
+console.log(
+  "🚀 ~ inputProps?.questionData[0].question.text",
+  inputProps?.questionData[0].question.text,
+);
 
 export type TQuestionData = {
   question: {

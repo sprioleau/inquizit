@@ -9,6 +9,7 @@ type Props = {
 };
 
 export default function Questions({ questionData }: Props) {
+  console.log("🚀 ~ file: Questions.tsx:12 ~ Questions ~ questionData:", questionData);
   const { durationInFrames } = useVideoConfig();
 
   const framesPerQuestion = Math.floor(durationInFrames / questionData.length);
