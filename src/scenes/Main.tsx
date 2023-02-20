@@ -51,8 +51,8 @@ export default function Main() {
       return {
         ...question,
         audioStream: `data:audio/mp3;base64,${audioStreamFromApi}`,
-        startFrom: (words[index].startTime / 1000) * fps,
-        endAt: (words[index].endTime / 1000) * fps,
+        startFrom: Math.round((words[index].startTime / 1000) * fps),
+        endAt: Math.round((words[index].endTime / 1000) * fps),
       };
     });
 

@@ -26,7 +26,7 @@ export default function Questions({ questions }: Props) {
         startFrom={345}
         volume={0.5}
       />
-      {questions.map(({ question, answer, audioStream }, index) => (
+      {questions.map(({ question, answer, audioStream, startFrom, endAt }, index) => (
         <Sequence
           key={index}
           from={framesPerQuestion * index}
@@ -41,6 +41,8 @@ export default function Questions({ questions }: Props) {
             questionNumber={index + 1}
             answer={answer}
             audioStream={audioStream}
+            startFrom={startFrom}
+            endAt={endAt}
           />
         </Sequence>
       ))}
