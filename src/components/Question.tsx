@@ -7,27 +7,21 @@ import {
   useVideoConfig,
 } from "remotion";
 
-import { TQuestion } from "../scenes/Main";
+import { TQuestionData } from "../Root";
 import Emoji from "./Emoji";
 import ProgressMeter from "./ProgressMeter";
 import StaggeredText from "./StaggeredText";
 
-type Props = TQuestion & {
+type Props = {
+  questionData: TQuestionData;
   questionNumber: number;
 };
 
-export default function Question({
-  question,
-  questionNumber,
-  answer,
-  audioStream,
-  startFrom,
-  endAt,
-}: Props) {
+export default function Question({ questionData: { question, answer }, questionNumber }: Props) {
   const { durationInFrames } = useVideoConfig();
   const frame = useCurrentFrame();
   const staggerByFrames = 2;
-  const framesToHoldAnswer = Math.max(90, answer.length * staggerByFrames);
+  const framesToHoldAnswer = Math.max(90, answer.text.length * staggerByFrames);
 
   const progress = interpolate(
     frame,
@@ -54,7 +48,7 @@ export default function Question({
           lineHeight: 1,
         }}
       >
-        <Emoji input={question} />
+        <Emoji input={question.text} />
       </h1>
       <span
         style={{
@@ -90,13 +84,11 @@ export default function Question({
         }}
         from={durationInFrames - framesToHoldAnswer}
       >
-        {/* {audioStream.slice("data:audio/mp3;base64,".length).length > 0 && ( */}
         <Audio
-          src={audioStream}
-          startFrom={startFrom}
-          endAt={endAt}
+          src={answer.audioSrc}
+          startFrom={answer.startFrom}
+          endAt={answer.endAt}
         />
-        {/* )} */}
         <p
           style={{
             position: "absolute",
@@ -108,7 +100,7 @@ export default function Question({
           }}
         >
           <StaggeredText
-            text={answer}
+            text={answer.text}
             staggerByFrames={staggerByFrames}
           />
         </p>

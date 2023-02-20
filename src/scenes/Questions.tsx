@@ -2,16 +2,16 @@ import { AbsoluteFill, Audio, Sequence, staticFile, useVideoConfig } from "remot
 
 import Question from "../components/Question";
 import ScrollingBackgroundWave from "../components/ScrollingBackgroundWave";
-import { TQuestion } from "./Main";
+import { TQuestionData } from "../Root";
 
 type Props = {
-  questions: TQuestion[];
+  questionData: TQuestionData[];
 };
 
-export default function Questions({ questions }: Props) {
+export default function Questions({ questionData }: Props) {
   const { durationInFrames } = useVideoConfig();
 
-  const framesPerQuestion = Math.floor(durationInFrames / questions.length);
+  const framesPerQuestion = Math.floor(durationInFrames / questionData.length);
 
   return (
     <AbsoluteFill
@@ -26,7 +26,7 @@ export default function Questions({ questions }: Props) {
         startFrom={345}
         volume={0.5}
       />
-      {questions.map(({ question, answer, audioStream, startFrom, endAt }, index) => (
+      {questionData.map((singleQuestionData, index) => (
         <Sequence
           key={index}
           from={framesPerQuestion * index}
@@ -37,12 +37,8 @@ export default function Questions({ questions }: Props) {
             speedIncrement={0.01}
           />
           <Question
-            question={question}
+            questionData={singleQuestionData}
             questionNumber={index + 1}
-            answer={answer}
-            audioStream={audioStream}
-            startFrom={startFrom}
-            endAt={endAt}
           />
         </Sequence>
       ))}
