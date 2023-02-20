@@ -3,8 +3,8 @@ name: Render Video
 on:
   workflow_dispatch:
     inputs:
-      duration:
-        description: "How many frames at 30fps should the video be?"
+      questionData:
+        description: "Questions and answers as a JSON string"
         required: false
 
 env: 
