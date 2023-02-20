@@ -43,7 +43,7 @@ export const RemotionRoot: React.FC = () => {
         width={1920}
         height={1080}
         defaultProps={{
-          questionData: inputProps.questionData ?? defaultInputProps,
+          questionData: JSON.parse(inputProps.questionData) ?? defaultInputProps,
         }}
       />
     </>
