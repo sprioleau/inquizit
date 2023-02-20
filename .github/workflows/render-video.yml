@@ -28,10 +28,17 @@ jobs:
         run: sudo apt install ffmpeg
       - name: 📦 Install NPM Dependencies
         run: npm i
+      - name: 🥞 Get API Data
+        uses: Satak/webrequest-action@v1.2.3
+        with:
+          url: https://sp-serverless-tts.vercel.app/api/tts?text=Woody,%20Buzz%20Lightyear
+          method: GET
       - name: 🍱 Setup Inputs
-        run: echo $WORKFLOW_INPUT > input-props.json
+        # run: echo $WORKFLOW_INPUT > input-props.json
+        run: echo $API_OUTPUT > input-props.json
         env:
           WORKFLOW_INPUT: ${{ toJson(github.event.inputs) }}
+          API_OUTPUT: ${{ toJson(steps.webhook.outputs.output) }}
       - name: 🔨 Run Build Script
         run: npm run build -- --props="./input-props.json"
       - name: ⬆️ Upload Artifact
