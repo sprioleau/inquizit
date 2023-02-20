@@ -37,9 +37,8 @@ export default function Main() {
 
   const getAudioData = useCallback(async () => {
     const textStrings = questions.map(({ answer }) => answer);
-    // const { data: textToSpeechData, error } = await getTextToSpeechData(textStrings);
     const response = await fetch(
-      `https://sp-serverless-tts.vercel.app/api/tts?text=${textStrings.join(",")}`,
+      `https://sp-serverless-tts.vercel.app/api/tts?text=${textStrings.join(".")}`,
     );
     const { error, words, audioStream: audioStreamFromApi } = await response.json();
 

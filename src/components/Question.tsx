@@ -24,7 +24,6 @@ export default function Question({
   startFrom,
   endAt,
 }: Props) {
-  console.log("🚀 ~ file: Question.tsx:27 ~ audioStream:", audioStream);
   const { durationInFrames } = useVideoConfig();
   const frame = useCurrentFrame();
   const staggerByFrames = 2;

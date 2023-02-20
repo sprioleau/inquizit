@@ -28,11 +28,6 @@ jobs:
         run: sudo apt install ffmpeg
       - name: 📦 Install NPM Dependencies
         run: npm i
-      # - name: 🥞 Get API Data
-      #   uses: Satak/webrequest-action@v1.2.3
-      #   with:
-      #     url: https://sp-serverless-tts.vercel.app/api/tts?text=Woody,%20Buzz%20Lightyear
-      #     method: GET
       - name: 🍱 Setup Inputs
         run: echo $WORKFLOW_INPUT > input-props.json
         env:
@@ -42,5 +37,5 @@ jobs:
       - name: ⬆️ Upload Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: Main.mp4
+          name: 🎥 Output Video
           path: out/Main.mp4
