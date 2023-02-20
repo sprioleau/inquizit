@@ -16,7 +16,15 @@ type Props = TQuestion & {
   questionNumber: number;
 };
 
-export default function Question({ question, questionNumber, answer, audioStream }: Props) {
+export default function Question({
+  question,
+  questionNumber,
+  answer,
+  audioStream,
+  startFrom,
+  endAt,
+}: Props) {
+  console.log("🚀 ~ file: Question.tsx:27 ~ audioStream:", audioStream);
   const { durationInFrames } = useVideoConfig();
   const frame = useCurrentFrame();
   const staggerByFrames = 2;
@@ -83,9 +91,13 @@ export default function Question({ question, questionNumber, answer, audioStream
         }}
         from={durationInFrames - framesToHoldAnswer}
       >
-        {audioStream.slice("data:audio/mp3;base64,".length).length > 0 && (
-          <Audio src={audioStream} />
-        )}
+        {/* {audioStream.slice("data:audio/mp3;base64,".length).length > 0 && ( */}
+        <Audio
+          src={audioStream}
+          startFrom={startFrom}
+          endAt={endAt}
+        />
+        {/* )} */}
         <p
           style={{
             position: "absolute",

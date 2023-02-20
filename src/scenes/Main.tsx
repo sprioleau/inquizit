@@ -1,8 +1,11 @@
 import { loadFont } from "@remotion/google-fonts/Poppins";
 import { useCallback, useEffect, useState } from "react";
-import { AbsoluteFill, Audio, continueRender, delayRender, useVideoConfig } from "remotion";
+import { AbsoluteFill, continueRender, delayRender, Series, useVideoConfig } from "remotion";
 
-import { getTextToSpeechData } from "../utils";
+import EndScene from "./EndScene";
+import QuestionIntro from "./QuestionIntro";
+import Questions from "./Questions";
+import Title from "./Title";
 
 const { fontFamily } = loadFont();
 
@@ -10,6 +13,8 @@ export type TQuestion = {
   question: string;
   answer: string;
   audioStream: string;
+  startFrom?: number;
+  endAt?: number;
 };
 
 // prettier-ignore
@@ -22,8 +27,8 @@ const passedInQuestions: TQuestion[] = [
   { question: "🦓🍰"  , answer: "Zebra Cake"      , audioStream: "" },
 ];
 
-export default function Main({ audioStream: audioStreamFromApi, words }: any) {
-  const { fps, height } = useVideoConfig();
+export default function Main() {
+  const { fps } = useVideoConfig();
   const secondsPerQuestion = 8;
   const numberOfQuestions = 6;
 
@@ -32,9 +37,13 @@ export default function Main({ audioStream: audioStreamFromApi, words }: any) {
 
   const getAudioData = useCallback(async () => {
     const textStrings = questions.map(({ answer }) => answer);
-    const { data: textToSpeechData, error } = await getTextToSpeechData(textStrings);
+    // const { data: textToSpeechData, error } = await getTextToSpeechData(textStrings);
+    const response = await fetch(
+      `https://sp-serverless-tts.vercel.app/api/tts?text=${textStrings.join(",")}`,
+    );
+    const { error, words, audioStream: audioStreamFromApi } = await response.json();
 
-    if (error || !textToSpeechData) {
+    if (error || !audioStreamFromApi) {
       console.error(error);
       return;
     }
@@ -42,12 +51,13 @@ export default function Main({ audioStream: audioStreamFromApi, words }: any) {
     const newQuestions = questions.map((question, index) => {
       return {
         ...question,
-        audioStream: textToSpeechData[index],
+        audioStream: `data:audio/mp3;base64,${audioStreamFromApi}`,
+        startFrom: (words[index].startTime / 1000) * fps,
+        endAt: (words[index].endTime / 1000) * fps,
       };
     });
 
     setQuestions(newQuestions);
-
     continueRender(handle);
   }, [handle]);
 
@@ -58,24 +68,7 @@ export default function Main({ audioStream: audioStreamFromApi, words }: any) {
   return (
     <>
       <AbsoluteFill style={{ fontFamily }}>
-        <pre
-          style={{
-            display: "block",
-            position: "absolute",
-            inset: 0,
-            top: 0,
-            zIndex: 10,
-            backgroundColor: "pink",
-            color: "tomato",
-            fontSize: "60px",
-            padding: "50px",
-            height: `${height}px`,
-          }}
-        >
-          {JSON.stringify({ audioStreamFromApi, words }, null, 2)}
-        </pre>
-        {audioStreamFromApi && <Audio src={`data:audio/mp3;base64,${audioStreamFromApi}`} />}
-        {/* <Series>
+        <Series>
           <Series.Sequence durationInFrames={75}>
             <Title />
           </Series.Sequence>
@@ -88,7 +81,7 @@ export default function Main({ audioStream: audioStreamFromApi, words }: any) {
           <Series.Sequence durationInFrames={100}>
             <EndScene />
           </Series.Sequence>
-        </Series> */}
+        </Series>
       </AbsoluteFill>
     </>
   );
