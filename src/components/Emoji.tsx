@@ -43,6 +43,7 @@ export default function Emoji({ input }: Props) {
         src={`${BASE_URL}/${code}.svg`}
         data-emoji={string}
         alt={string}
+        onError={(e) => console.error(e)}
         style={{
           display: "inline-block",
           width: "1em",
