@@ -4,7 +4,6 @@ import Main from "./scenes/Main";
 
 const inputProps = getInputProps();
 console.log("🚀 ~ inputProps:", inputProps);
-console.log("🚀 ~ typeof inputProps:", typeof inputProps);
 console.log("🚀 ~ inputProps?.questionData:", inputProps?.questionData);
 console.log(
   "🚀 ~ inputProps?.questionData[0].question.text",
@@ -23,21 +22,15 @@ export type TQuestionData = {
   };
 };
 
-type TInputProps = {
-  questionData: TQuestionData[];
-};
-
 // prettier-ignore
-const defaultInputProps: TInputProps = {
-  questionData: [
-    { question: { text: "🧈☝️"   }, answer: { text: "Butterfinger"     } },
-    { question: { text: "🍫🍫🍫" }, answer: { text: "Three Musketeers" } },
-    { question: { text: "🐱🐱"   }, answer: { text: "KitKat"           } },
-    { question: { text: "🧅💍"   }, answer: { text: "Onion Rings"      } },
-    { question: { text: "🐍👂"   }, answer: { text: "Snickers"         } },
-    { question: { text: "🦓🍰"   }, answer: { text: "Zebra Cake"       } },
-  ],
-};
+const defaultInputProps: TQuestionData[] = [
+  { question: { text: "🧈☝️"   }, answer: { text: "Butterfinger"     } },
+  { question: { text: "🍫🍫🍫" }, answer: { text: "Three Musketeers" } },
+  { question: { text: "🐱🐱"   }, answer: { text: "KitKat"           } },
+  { question: { text: "🧅💍"   }, answer: { text: "Onion Rings"      } },
+  { question: { text: "🐍👂"   }, answer: { text: "Snickers"         } },
+  { question: { text: "🦓🍰"   }, answer: { text: "Zebra Cake"       } },
+];
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -50,7 +43,7 @@ export const RemotionRoot: React.FC = () => {
         width={1920}
         height={1080}
         defaultProps={{
-          questionData: inputProps?.questionData ?? defaultInputProps.questionData,
+          questionData: inputProps.questionData ?? defaultInputProps,
         }}
       />
     </>
