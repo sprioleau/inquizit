@@ -1,12 +1,8 @@
 import { loadFont } from "@remotion/google-fonts/Poppins";
 import { useCallback, useEffect, useState } from "react";
-import { AbsoluteFill, continueRender, delayRender, Series, useVideoConfig } from "remotion";
+import { AbsoluteFill, Audio, continueRender, delayRender, useVideoConfig } from "remotion";
 
 import { getTextToSpeechData } from "../utils";
-import EndScene from "./EndScene";
-import QuestionIntro from "./QuestionIntro";
-import Questions from "./Questions";
-import Title from "./Title";
 
 const { fontFamily } = loadFont();
 
@@ -26,8 +22,8 @@ const passedInQuestions: TQuestion[] = [
   { question: "🦓🍰"  , answer: "Zebra Cake"      , audioStream: "" },
 ];
 
-export default function Main() {
-  const { fps } = useVideoConfig();
+export default function Main({ audioStream: audioStreamFromApi, words }: any) {
+  const { fps, height } = useVideoConfig();
   const secondsPerQuestion = 8;
   const numberOfQuestions = 6;
 
@@ -62,7 +58,24 @@ export default function Main() {
   return (
     <>
       <AbsoluteFill style={{ fontFamily }}>
-        <Series>
+        <pre
+          style={{
+            display: "block",
+            position: "absolute",
+            inset: 0,
+            top: 0,
+            zIndex: 10,
+            backgroundColor: "pink",
+            color: "tomato",
+            fontSize: "60px",
+            padding: "50px",
+            height: `${height}px`,
+          }}
+        >
+          {JSON.stringify({ audioStreamFromApi, words }, null, 2)}
+        </pre>
+        {audioStreamFromApi && <Audio src={`data:audio/mp3;base64,${audioStreamFromApi}`} />}
+        {/* <Series>
           <Series.Sequence durationInFrames={75}>
             <Title />
           </Series.Sequence>
@@ -75,7 +88,7 @@ export default function Main() {
           <Series.Sequence durationInFrames={100}>
             <EndScene />
           </Series.Sequence>
-        </Series>
+        </Series> */}
       </AbsoluteFill>
     </>
   );
